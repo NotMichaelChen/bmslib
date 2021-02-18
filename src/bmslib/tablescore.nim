@@ -24,7 +24,7 @@ let defaultStellaClearMapping = {
 }.toTable
 
 proc calculateStellaPoints*(
-  exscore, level: int,
+  exscore, level: int64,
   clearType: ClearType,
   clearMapping: Table[ClearType, float] = defaultStellaClearMapping
 ): float =
@@ -39,7 +39,7 @@ let defaultDjpClearMapping = {
   ClearType.failed: 0.0,
 }.toTable
 
-proc toGradeValue(exscore, totalExscore: int): float =
+proc toGradeValue(exscore, totalExscore: int64): float =
   let rate = float(exscore) / float(totalExscore)
 
   if rate > 0.89:
@@ -52,7 +52,7 @@ proc toGradeValue(exscore, totalExscore: int): float =
     return 0
 
 proc calculateDjp*(
-  exscore, totalExscore: int,
+  exscore, totalExscore: int64,
   clearType: ClearType,
   clearMapping: Table[ClearType, float] = defaultDjpClearMapping
 ): float =
