@@ -9,3 +9,4 @@ srcDir        = "src"
 # Dependencies
 
 requires "nim >= 1.2.0"
+requires "puppy >= 1.3.0"

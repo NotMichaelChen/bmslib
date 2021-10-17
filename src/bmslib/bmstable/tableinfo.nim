@@ -1,4 +1,4 @@
-import httpClient
+import puppy
 import htmlparser
 import xmltree
 import strtabs
@@ -12,23 +12,22 @@ type TableInfo* = object
   dataUrl*: string
   dataJson*: JsonNode
 
-proc getHeaderUrl(tableurl: string, client: HttpClient): string
+proc getHeaderUrl(tableurl: string): string
 proc parseUrl(baseurl: string, otherurl: string): string
 
 proc initTableInfo*(tableurl: string): TableInfo =
-  let client = newHttpClient()
+  # let client = newHttpClient()
 
-  let headerurl = getHeaderUrl(tableurl, client)
-  let headerJson = parseJson(client.getContent(headerurl))
+  let headerurl = getHeaderUrl(tableurl)
+  let headerJson = parseJson(fetch(headerurl))
 
   let dataurl = parseUrl(headerurl, headerJson["data_url"].getStr)
-  let dataJson = parseJson(client.getContent(dataurl))
+  let dataJson = parseJson(fetch(dataurl))
 
   TableInfo(headerurl: headerurl, headerJson: headerJson, dataUrl: dataurl, dataJson: dataJson)
   
-proc getHeaderUrl(tableurl: string, client: HttpClient): string =
-  # download the tableurl
-  let webpage = client.getContent(tableurl)
+proc getHeaderUrl(tableurl: string): string =
+  let webpage = fetch(tableurl)
 
   # parse the webpage for a meta tag with bmstable
   let htmldoc = htmlparser.parseHtml(webpage)
