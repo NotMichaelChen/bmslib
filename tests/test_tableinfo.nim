@@ -1,7 +1,7 @@
 import unittest
 import httpclient
 
-import bmslib/bmstable/tableinfo
+import bmslib/tableinfo
 
 suite "TableInfo":
   let httpClient = newHttpClient()
@@ -33,8 +33,8 @@ suite "TableInfo":
     echo "Testing relative URL paths (Insane 2nd Table)"
     tableTest(
       "http://rattoto10.jounin.jp/table_insane.html",
-      "http://rattoto10.jounin.jp/js/insane_header.json",
-      "http://rattoto10.jounin.jp/js/insane_data.json"
+      "https://rattoto10.github.io/second_table/insane_header.json",
+      "https://rattoto10.github.io/second_table/insane_data.json"
     )
 
     echo "Testing relative URL files (10k Table)"
