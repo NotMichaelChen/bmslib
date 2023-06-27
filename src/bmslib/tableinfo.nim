@@ -1,3 +1,9 @@
+##[
+  This module provides a function + object for fetching the header/data json objects associated
+  with a BMS table that conforms to the spec defined in:
+  http://bmsnormal2.syuriken.jp/bms_dtmanager.html
+]##
+
 import puppy
 import htmlparser
 import xmltree
@@ -6,7 +12,7 @@ import strutils
 import json
 import uri
 
-type TableInfo* = object
+type TableInfo* = object ## Type that contains the header/data json associated with the BMS table
   headerUrl*: string
   headerJson*: JsonNode
   dataUrl*: string
@@ -16,8 +22,10 @@ proc getHeaderUrl(tableurl: string): string
 proc parseUrl(baseurl: string, otherurl: string): string
 
 proc initTableInfo*(tableurl: string): TableInfo =
-  # let client = newHttpClient()
-
+  ##[
+    Fetches the header + data json objects for a given BMS table. This should be the URL that you
+    enter into GLassist or BeMusicSeeker
+  ]##
   let headerurl = getHeaderUrl(tableurl)
   let headerJson = parseJson(fetch(headerurl))
 
