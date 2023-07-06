@@ -8,5 +8,6 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 1.2.0"
-requires "puppy >= 1.3.0"
+requires "nim >= 1.6.14"
+requires "puppy >= 2.0.3"
+requires "tiny_sqlite >= 0.2.0"
